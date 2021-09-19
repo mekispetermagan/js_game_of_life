@@ -1,0 +1,49 @@
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  width: 400px;
+  padding: 20px;
+  background-color: rgb(40, 40, 40);
+  border-radius: 10px;
+}
+
+.button-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.button {
+  margin-bottom: 10px;
+  font-family: monospace;
+  font-size: 18px;
+  color: white;
+  width: 170px;
+  padding: 10px 30px;
+  border-width: 3px;
+  border-radius: 5px;
+  display: flex;
+  vertical-align: middle;
+  justify-content: space-around;
+}
+
+.button.start {
+  background-color: rgb(30, 120, 30);
+}
+
+.button.clear {
+  background-color: rgb(120, 30, 120);
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(36, 10px);
+  grid-gap: 0px;
+  width: 100%;
+}
+
+.cell {
+  width: 10px;
+  height: 10px;
+}
