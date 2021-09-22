@@ -1,24 +1,37 @@
 const gridHTML = document.getElementsByClassName("grid")[0];
 const buttons = document.getElementsByClassName("button");
-const playButton = buttons[0];
-const clearButton = buttons[1];
-const icons = document.getElementsByClassName("material-icons");
-const playIcon = icons[0];
-const clearIcon = icons[1];
+const buttonIcons = document.getElementsByClassName("material-icons");
 const buttonTexts = document.getElementsByClassName("button-text");
+
+const playButton = buttons[0];
+const playIcon = buttonIcons[0];
 const playText = buttonTexts[0];
+
+const clearButton = buttons[1];
+const clearIcon = buttonIcons[1];
 const clearText = buttonTexts[1];
-const size = 36;
+
+const randomButton = buttons[2];
+const randomIcon = buttonIcons[2];
+const randomText = buttonTexts[2];
+
+const editButton = buttons[3];
+const editIcon = buttonIcons[3];
+const editText = buttonTexts[3];
+
+const size = 60;
 const aliveColor = "rgb(240, 240, 60)";
 const deadColor = "rgb(30, 30, 90)";
 
 var grid = createGrid();
 var playOn = false;
-var cleared = false;
+var editOn = false;
 var interval = null;
 
 playButton.onclick = function() {playPause()};
-clearButton.onclick = function() {clearRandom()};
+clearButton.onclick = function() {clearGrid(grid)};
+randomButton.onclick = function() {randomizeGrid(grid)};
+editButton.onclick = function() {editOnOff()};
 
 function playPause() {
   if (playOn) {
@@ -28,27 +41,25 @@ function playPause() {
     playText.innerHTML = "Start";
     playButton.style.backgroundColor = "rgb(30, 120, 30)";
   } else {
-    interval = setInterval(nextGeneration, 1000);
+    interval = setInterval(nextGeneration, 300);
     playOn = true;
     playIcon.innerHTML = "pause_circle_outline";
     playText.innerHTML = "Pause";
-    playButton.style.backgroundColor = "rgb(120, 30, 30)";
+    playButton.style.backgroundColor = "rgb(150, 90, 30)";
   }
 }
 
-function clearRandom() {
-  if (cleared) {
-    randomizeGrid(grid);
-    cleared = false;
-    clearIcon.innerHTML = "grid_off";
-    clearText.innerHTML = "Clear";
-    clearButton.style.backgroundColor = "rgb(120, 30, 120)";
+function editOnOff() {
+  if (editOn) {
+    editOn = false;
+    editIcon.innerHTML = "edit";
+    editText.innerHTML = "Edit";
+    editButton.style.backgroundColor = "rgb(30, 30, 120)";
   } else {
-    clearGrid(grid);
-    cleared = true;
-    clearIcon.innerHTML = "grid_on";
-    clearText.innerHTML = "Random";
-    clearButton.style.backgroundColor = "rgb(30, 30, 120)";
+    editOn = true;
+    editIcon.innerHTML = "edit_off";
+    editText.innerHTML = "Ready";
+    editButton.style.backgroundColor = "rgb(30, 30, 120)";
   }
 }
 
@@ -90,10 +101,12 @@ function randomizeGrid(grid) {
 }
 
 function reverse(cell) {
-  if (isAlive(cell)) {
-    kill(cell);
-  } else {
-    revive(cell);
+  if (editOn) {
+    if (isAlive(cell)) {
+      kill(cell);
+    } else {
+      revive(cell);
+    }
   }
 }
 

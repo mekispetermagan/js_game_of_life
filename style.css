@@ -1,12 +1,23 @@
 * {
   box-sizing: border-box;
+  font-family: monospace;
+  color: rgb(240, 240, 240);
+  font-size: 18px;
 }
 
 .container {
-  width: 400px;
+  width: 640px;
   padding: 20px;
   background-color: rgb(40, 40, 40);
-  border-radius: 10px;
+  border-radius: 15px;
+}
+
+.title {
+  width: 100%;
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+  letter-spacing: 2px;
 }
 
 .button-container {
@@ -17,11 +28,8 @@
 
 .button {
   margin-bottom: 10px;
-  font-family: monospace;
-  font-size: 18px;
-  color: white;
-  width: 170px;
-  padding: 10px 30px;
+  width: 140px;
+  padding: 10px 15px;
   border-width: 3px;
   border-radius: 5px;
   display: flex;
@@ -34,11 +42,20 @@
 }
 
 .button.clear {
+  background-color: rgb(120, 30, 30);
+}
+
+.button.random {
   background-color: rgb(120, 30, 120);
 }
+
+.button.edit {
+  background-color: rgb(30, 30, 120);
+}
+
 .grid {
   display: grid;
-  grid-template-columns: repeat(36, 10px);
+  grid-template-columns: repeat(60, 10px);
   grid-gap: 0px;
   width: 100%;
 }
@@ -46,4 +63,13 @@
 .cell {
   width: 10px;
   height: 10px;
+}
+
+.credit {
+  margin-top: 15px;
+}
+.info {
+  display: block;
+  color: rgb(180, 180, 240);
+  margin-top: 10px;
 }
